@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <title>Вход</title>
+
+<style>
+     body {
+            background-color: #2f2f2f;
+            min-height: 100vh;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1%;
+            color: white; 
+            padding: 15%
+        }
+</style>
+</head>
+<body>
+<form action="/login" method="post" class="loginForm" id="loginForm">
+  <div class="container border rounded-5 border-5 border-danger" style="width: 20%; text-align: center; margin: 0 auto; padding: 1%;">
+    <div class="mb-1">
+      <label for="emailLogin" class="form-label">Почта</label>
+      <input type="email" name="username" class="form-control" id="userName" placeholder="login">
+    </div>
+    <div class="mb-1">
+      <label for="passwordLogin" class="form-label">Пароль</label>
+      <input type="password" name="password" class="form-control" id="passwordLogin" placeholder="password">
+    </div>
+    <button style="left: 1px; position: absolute;" id="submitLogin" type="submit" ></button>
+  </div>
+</form>
+<script>
+       var tokenKey = "accessToken";
+ 
+        // отпавка запроса к контроллеру AccountController для получения токена
+        async function getTokenAsync() {
+ 
+            // получаем данные формы и фомируем объект для отправки
+            const formData = new FormData();
+            formData.append("grant_type", "password");
+            formData.append("username", document.getElementById("userName").value);
+            formData.append("password", document.getElementById("passwordLogin").value);
+ 
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/token", {
+                method: "POST",
+                headers: {"Accept": "application/json"},
+                body: formData
+            });
+            // получаем данные 
+            const data = await response.json();
+ 
+            // если запрос прошел нормально
+            if (response.ok === true) {
+ 
+                // изменяем содержимое и видимость блоков на странице
+                document.getElementById("userName").innerText = data.username;
+               document.getElementById("loginForm").style.display = "none";
+                // сохраняем в хранилище sessionStorage токен доступа
+                sessionStorage.setItem(tokenKey, data.access_token);
+                console.log(data.access_token);
+             }
+            else {
+                // если произошла ошибка, из errorText получаем текст ошибки
+                console.log("Error: ", response.status, data.errorText);
+            }
+        };
+        // отправка запроса к контроллеру ValuesController
+        async function getData(url) {
+            const token = sessionStorage.getItem(tokenKey);
+ 
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "Authorization": "Bearer " + token  // передача токена в заголовке
+                }
+            });
+            if (response.ok === true) {
+                 
+                const data = await response.json();
+                alert(data)
+            }
+            else
+                console.log("Status: ", response.status);
+        };
+ 
+        // получаем токен
+        document.getElementById("submitLogin").addEventListener("click", e => {
+ 
+            e.preventDefault();
+            getTokenAsync();
+        });
+ 
+    </script>
+</body>
+</html>

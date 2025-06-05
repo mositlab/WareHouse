@@ -1,0 +1,8 @@
+wwwroot\card.html
+wwwroot\css\styles.css
+wwwroot\images\bolt.jpg
+wwwroot\js\script.js
+wwwroot\libs\bootstrap.min.css
+wwwroot\main.html
+wwwroot\storage1.html
+wwwroot\index.html

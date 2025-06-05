@@ -1,0 +1,22 @@
+[
+  {
+    "ContainingType": "TokenApp.Controllers.ValuesController",
+    "Method": "GetLogin",
+    "RelativePath": "api/Values/getlogin",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TokenApp.Controllers.ValuesController",
+    "Method": "GetRole",
+    "RelativePath": "api/Values/getrole",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <title>Главная</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width: 22%; border-radius: 10px;">
+        <div class="container-fluid">
+            <form class="container-fluid justify-content-start">
+                <button type="button" class="btn btn-outline-danger active btn-lg" style="width: 120px;">Главная</button>
+                <button type="button" class="btn btn-outline-danger btn-lg" style="width: 120px;">text</button>
+                <button type="button" class="btn btn-outline-danger btn-lg" style="width: 120px;">text</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="main-1">
+        <form method="GET" class="input-group input-group-lg search-form">
+            <input 
+                type="text" 
+                class="form-control" 
+                id="itemInput"
+                name="q" 
+                placeholder="ПОИСК" 
+                aria-label="Поисковый запрос" 
+                aria-describedby="search-label"
+                autocomplete="off">
+            <button onclick="addItem()" class="btn btn-danger" type="submit">Найти</button>
+        </form>
+        <div class="inner-window" id="innerWindow">
+            <span class="close-btn" onclick="closeInnerWindow()">✕</span>
+               <ul id="items-list"></ul>
+        </div>
+        <div class="container text-center content-container">
+            <div class="row">
+                <div class="col bg-body-tertiary">
+                    <button onclick="openStorage1()" class="storages"><h3>Склад 1</h3></button>
+                </div>
+                <div class="col bg-body-tertiary">
+                    <button class="storages"><h3>Склад 2</h3></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="js/script.js"></script>
+</body>
+</html>

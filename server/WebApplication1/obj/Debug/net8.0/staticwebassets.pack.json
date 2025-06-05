@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\WebApplication1.bundle.scp.css",
+      "PackagePath": "staticwebassets\\WebApplication1.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\card.html",
+      "PackagePath": "staticwebassets\\card.html"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\images\\bolt.jpg",
+      "PackagePath": "staticwebassets\\images\\bolt.jpg"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\libs\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\libs\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\main.html",
+      "PackagePath": "staticwebassets\\main.html"
+    },
+    {
+      "Id": "C:\\Users\\praktikant2\\Desktop\\222\\server\\WebApplication1\\wwwroot\\storage1.html",
+      "PackagePath": "staticwebassets\\storage1.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WebApplication1.props",
+      "PackagePath": "build\\WebApplication1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WebApplication1.props",
+      "PackagePath": "buildMultiTargeting\\WebApplication1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WebApplication1.props",
+      "PackagePath": "buildTransitive\\WebApplication1.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
