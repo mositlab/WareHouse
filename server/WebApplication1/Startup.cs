@@ -35,14 +35,14 @@ namespace TokenApp
                     });
             services.AddControllersWithViews();
         }
-
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            app.UseDefaultFiles(); // позволяет открывать index.html без указания имени файла
+            app.UseStaticFiles();  // раздаёт статические файлы из wwwroot
             app.UseRouting();
 
             app.UseAuthentication();
@@ -50,8 +50,9 @@ namespace TokenApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllers(); // маршруты контроллеров
             });
         }
+
     }
 }

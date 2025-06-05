@@ -22,13 +22,9 @@ namespace TokenApp.Controllers
         public IActionResult Token(string username, string password)
         {
             var identity = GetIdentity(username, password);
-            if (identity == null)
-            {
-                return BadRequest(new { errorText = "Invalid username or password." });
-            }
-
+        
             var now = DateTime.UtcNow;
-            // создаем JWT-токен
+            //JWT-токен
             var jwt = new JwtSecurityToken(
                     issuer: AuthOptions.ISSUER,
                     audience: AuthOptions.AUDIENCE,

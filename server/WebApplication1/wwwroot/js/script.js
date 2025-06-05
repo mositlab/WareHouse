@@ -78,8 +78,15 @@ window.open("main.html");
 }
 
 // token
-const token = localStorage.getItem("token");
-        if (!token) {
-            window.location.href = "/index.html";
-        }
-        
+    // Проверяем, есть ли токен
+    const tokenKey = "accessToken";
+    const token = sessionStorage.getItem(tokenKey);
+
+    if (!token) {
+        // Если токена нет → отправляем обратно на вход
+        window.location.href = "index.html";
+    } else {
+        // Если есть — можно вывести имя пользователя или продолжить работу
+        document.getElementById("userName").innerText = "Добро пожаловать!";
+}
+
