@@ -36,38 +36,34 @@
        var tokenKey = "accessToken";
  
         // отпавка запроса к контроллеру AccountController для получения токена
-        async function getTokenAsync() {
- 
-            // получаем данные формы и фомируем объект для отправки
-            const formData = new FormData();
-            formData.append("grant_type", "password");
-            formData.append("username", document.getElementById("userName").value);
-            formData.append("password", document.getElementById("passwordLogin").value);
- 
-            // отправляет запрос и получаем ответ
-            const response = await fetch("/token", {
-                method: "POST",
-                headers: {"Accept": "application/json"},
-                body: formData
-            });
-            // получаем данные 
-            const data = await response.json();
- 
-            // если запрос прошел нормально
-            if (response.ok === true) {
- 
-                // изменяем содержимое и видимость блоков на странице
-                document.getElementById("userName").innerText = data.username;
-               document.getElementById("loginForm").style.display = "none";
-                // сохраняем в хранилище sessionStorage токен доступа
-                sessionStorage.setItem(tokenKey, data.access_token);
-                window.location.href = "main.html";
-             }
-            else {
-                // если произошла ошибка, из errorText получаем текст ошибки
-                console.log("Error: ", response.status, data.errorText);
-            }
-        };
+    async function getTokenAsync() {
+        const formData = new FormData();
+        formData.append("username", document.getElementById("emailLogin").value);
+        formData.append("password", document.getElementById("passwordLogin").value);
+
+        const response = await fetch("/Account/token", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: formData
+        });
+
+        let data;
+        try {
+            data = await response.json(); // ← только если ответ JSON
+        } catch (e) {
+            const text = await response.text();
+            console.error("Не JSON:", text); // ← посмотри, что именно вернул сервер
+            return;
+        }
+
+        if (response.ok && data.access_token) {
+            sessionStorage.setItem("accessToken", data.access_token);
+            window.location.href = "main.html";
+        } else {
+            alert("Ошибка входа");
+            console.log(data);
+        }
+    }
         // отправка запроса к контроллеру ValuesController
         async function getData(url) {
             const token = sessionStorage.getItem(tokenKey);
