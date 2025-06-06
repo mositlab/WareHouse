@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -19,24 +19,8 @@
       "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\script.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\controllers\\valuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\valuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\authoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,32 +38,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ValueController.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Controllers\\ValueController.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\ValueController.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Controllers\\ValueController.cs",
-              "RelativeToolTip": "WebApplication1\\Controllers\\ValueController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T12:13:17.082Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "script.js",
               "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\script.js",
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\js\\script.js",
               "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\script.js",
               "RelativeToolTip": "WebApplication1\\wwwroot\\js\\script.js",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwEYAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAA4wGYAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-05T13:26:33.566Z",
+              "WhenOpened": "2025-06-06T14:46:51.886Z",
               "EditorCaption": ""
             },
             {
@@ -90,10 +61,9 @@
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\main.html",
               "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\main.html",
               "RelativeToolTip": "WebApplication1\\wwwroot\\main.html",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-05T13:26:20.72Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T13:26:20.72Z"
             },
             {
               "$type": "Document",
@@ -103,14 +73,13 @@
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\index.html",
               "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\index.html",
               "RelativeToolTip": "WebApplication1\\wwwroot\\index.html",
-              "ViewState": "AgIAADEAAAAAAAAAAAAAAD4AAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAABwAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-06-05T12:37:19.335Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T12:37:19.335Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "AuthOptions.cs",
               "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\AuthOptions.cs",
               "RelativeDocumentMoniker": "WebApplication1\\AuthOptions.cs",
@@ -122,46 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Person.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Models\\Person.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Models\\Person.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Models\\Person.cs",
-              "RelativeToolTip": "WebApplication1\\Models\\Person.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T10:35:33.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "WebApplication1\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T10:35:18.279Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Startup.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Startup.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Startup.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Startup.cs",
-              "RelativeToolTip": "WebApplication1\\Startup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T09:56:31.191Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "WebApplication1\\Properties\\launchSettings.json",
@@ -169,8 +99,7 @@
               "RelativeToolTip": "WebApplication1\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-04T12:04:24.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T12:04:24.594Z"
             },
             {
               "$type": "Document",
@@ -180,14 +109,14 @@
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
               "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Program.cs",
               "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAkwBYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-04T11:39:21.501Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "WebApplication1.csproj",
               "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\WebApplication1.csproj",
               "RelativeDocumentMoniker": "WebApplication1\\WebApplication1.csproj",

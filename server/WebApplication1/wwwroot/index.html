@@ -1,96 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <title>METANIT.COM</title>
     <link href="libs/bootstrap.min.css" rel="stylesheet">
-    <title>Вход</title>
-
-<style>
-     body {
+    <style>
+        body {
             background-color: #2f2f2f;
             min-height: 100vh;
             flex-direction: column;
             align-items: center;
             padding-top: 1%;
-            color: white; 
+            color: white;
             padding: 15%
         }
-</style>
+    </style>
 </head>
 <body>
-<form action="/login" method="post" class="loginForm" id="loginForm">
-  <div class="container border rounded-5 border-5 border-danger" style="width: 20%; text-align: center; margin: 0 auto; padding: 1%;">
-    <div class="mb-1">
-      <label for="emailLogin" class="form-label">Почта</label>
-      <input type="email" name="username" class="form-control" id="userName" placeholder="login">
+    <div class="container border border-5 rounded-5 border-danger" style="width: 20%; text-align: center; margin: 0 auto; padding: 2%;" id="loginForm">
+        <div class="mb-1" style="padding-bottom: 10%;">
+            <label>Введите email</label>
+            <input type="email" id="email" class="form-control" placeholder="Email"/>
+        </div>
+        <div class="mb-1" style="padding-bottom: 10%;">
+            <label>Введите пароль</label>
+            <input type="password" id="password" class="form-control" placeholder="Пароль" />
+       </div>
+        <div class="mb-1">
+        <input type="submit" id="submitLogin" class="form-control bg-success border border-1 border-success" value="Логин" />
     </div>
-    <div class="mb-1">
-      <label for="passwordLogin" class="form-label">Пароль</label>
-      <input type="password" name="password" class="form-control" id="passwordLogin" placeholder="password">
     </div>
-    <button style="left: 1px; position: absolute;" id="submitLogin" type="submit" ></button>
-  </div>
-</form>
-<script>
-       var tokenKey = "accessToken";
- 
-        // отпавка запроса к контроллеру AccountController для получения токена
-    async function getTokenAsync() {
-        const formData = new FormData();
-        formData.append("username", document.getElementById("emailLogin").value);
-        formData.append("password", document.getElementById("passwordLogin").value);
-
-        const response = await fetch("/Account/token", {
-            method: "POST",
-            headers: { "Accept": "application/json" },
-            body: formData
-        });
-
-        let data;
-        try {
-            data = await response.json(); // ← только если ответ JSON
-        } catch (e) {
-            const text = await response.text();
-            console.error("Не JSON:", text); // ← посмотри, что именно вернул сервер
-            return;
-        }
-
-        if (response.ok && data.access_token) {
-            sessionStorage.setItem("accessToken", data.access_token);
-            window.location.href = "main.html";
-        } else {
-            alert("Ошибка входа");
-            console.log(data);
-        }
-    }
-        // отправка запроса к контроллеру ValuesController
-        async function getData(url) {
-            const token = sessionStorage.getItem(tokenKey);
- 
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json",
-                    "Authorization": "Bearer " + token  // передача токена в заголовке
-                }
-            });
-            if (response.ok === true) {
-                 
-                const data = await response.json();
-                alert(data)
-            }
-            else
-                console.log("Status: ", response.status);
-        };
- 
-        // получаем токен
-        document.getElementById("submitLogin").addEventListener("click", e => {
- 
+    <script>
+        var tokenKey = "accessToken";
+        // при нажатии на кнопку отправки формы идет запрос к /login для получения токена
+        document.getElementById("submitLogin").addEventListener("click", async e => {
             e.preventDefault();
-            getTokenAsync();
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/login", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value
+                })
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const data = await response.json();
+    
+                // сохраняем в хранилище sessionStorage токен доступа
+                sessionStorage.setItem(tokenKey, data.access_token);
+                                window.location.href = "main.html";
+            }
+            else  // если произошла ошибка, получаем код статуса
+                console.log("Status: ", response.status);
         });
- 
     </script>
 </body>
 </html>

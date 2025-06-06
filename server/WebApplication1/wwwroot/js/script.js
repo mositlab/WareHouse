@@ -78,15 +78,27 @@ window.open("main.html");
 }
 
 // token
-    // Проверяем, есть ли токен
-    const tokenKey = "accessToken";
-    const token = sessionStorage.getItem(tokenKey);
+const tokenKey = "accessToken";
 
-    if (!token) {
-        // Если токена нет → отправляем обратно на вход
-        window.location.href = "index.html";
-    } else {
-        // Если есть — можно вывести имя пользователя или продолжить работу
-        document.getElementById("userName").innerText = "Добро пожаловать!";
+// Проверяем, есть ли токен
+const token = sessionStorage.getItem(tokenKey);
+
+if (!token) {
+    window.location.href = "index.html";
+} else {
+    // Можно вывести приветствие или продолжить работу
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Проверим токен через API (если нужно)
+        const response = await fetch("/api/values/getlogin", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            }
+        });
+
+        if (!response.ok) {
+            sessionStorage.removeItem(tokenKey);
+            window.location.href = "index.html";
+        }
+    });
 }
-
