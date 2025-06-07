@@ -89,7 +89,7 @@ if (!token) {
     // Можно вывести приветствие или продолжить работу
     document.addEventListener("DOMContentLoaded", async () => {
         // Проверим токен через API (если нужно)
-        const response = await fetch("/api/values/getlogin", {
+        const response = await fetch("/data", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token

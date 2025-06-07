@@ -63,7 +63,7 @@ app.MapPost("/login", (Person loginData) =>
 
     return Results.Json(response);
 });
-app.Map("/data", [Authorize] () => new { message = "Hello World!" });
+app.MapGet("/data", [Authorize] () => new { message = "Hello World!" });
 
 app.Run();
 
@@ -71,7 +71,7 @@ public class AuthOptions
 {
     public const string ISSUER = "MyAuthServer"; // издатель токена
     public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-    const string KEY = "mysupersecret_secretsecretsecretkey!123";   // ключ для шифрации
+    const string KEY = "a-string-secret-at-least-256-bits-long";   // ключ для шифрации
     public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 }

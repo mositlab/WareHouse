@@ -1,9 +1,9 @@
 wwwroot\card.html
 wwwroot\css\styles.css
 wwwroot\images\bolt.jpg
-wwwroot\main.html
-wwwroot\js\script.js
-wwwroot\libs\bootstrap.min.css
 wwwroot\index.html
-wwwroot\storage1.html
+wwwroot\libs\bootstrap.min.css
+wwwroot\main.html
 wwwroot\nonindex.html
+wwwroot\storage1.html
+wwwroot\js\script.js
