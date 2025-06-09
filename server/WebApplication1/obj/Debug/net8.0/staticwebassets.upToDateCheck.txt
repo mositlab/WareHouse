@@ -1,9 +1,10 @@
 wwwroot\card.html
-wwwroot\css\styles.css
 wwwroot\images\bolt.jpg
 wwwroot\index.html
+wwwroot\libs\bootstrap.bundle.min.js
 wwwroot\libs\bootstrap.min.css
-wwwroot\main.html
 wwwroot\nonindex.html
-wwwroot\storage1.html
+wwwroot\css\styles.css
 wwwroot\js\script.js
+wwwroot\main.html
+wwwroot\storage1.html

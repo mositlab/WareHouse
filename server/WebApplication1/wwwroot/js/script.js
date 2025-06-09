@@ -102,3 +102,40 @@ if (!token) {
         }
     });
 }
+
+// storage
+document.getElementById('photoInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')){
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+// Запрос на JSON файл
+document.addEventListener('DOMContentLoaded', () =>{
+    const saveButton = document.getElementById('ButtonAdd');
+
+    saveButton.addEventListener('click', () => {
+        const data = {
+            fullname: document.getElementById("storagefullname").value,
+            email: document.getElementById("storageEmail").value,
+            NameIem: document.getElementById("storagenameitem").value,
+            LocationItem: document.getElementById("storagelocationitem").value,
+            Date: document.getElementById("storagedate").value
+        };
+
+        const jsonstring = json.stringify(data, null, 2);
+        
+        const blob = new Blob([jsonstring], {type: "application/json"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "logs.json";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    });
+})

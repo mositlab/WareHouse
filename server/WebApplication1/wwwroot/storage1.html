@@ -5,10 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link href="framework/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="libs/bootstrap.min.css" rel="stylesheet">
+    <style>
+              body {
+            background-color: #2f2f2f;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1%;
+            color: white; 
+        }
+        
+    </style>
     <title>Склад 1</title>
 </head>
 <body>
-<h1>Склад</h1>
-<script src="js/script.js"></script>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary border border-5 border-danger" style="width: 16%; padding: 1%; border-radius: 10px; color: #2f2f2f;">
+<h1>Склад 1</h1>
+<button type="button" class="btn btn-danger btn-lg" style="margin-left: 7%;">-</button>
+<button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#Modal">+</button>
+</nav>
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" style="text-align: center;">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark" >
+            
+            <div class="modal-body border border-5 rounded border-danger">
+            <div class="modal-header" id="ModalLabel" style="color: white;">
+                <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" style="padding: 2%;">Добавление предмета</div>
+            </div>
+                <form class="input-group input-group-lg">
+                    <div class="row">
+                            <div class="col-md-4" style="color: white;">
+                                <label class="form-label">ФИО</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="storagefullname"
+                                name="q"
+                                placeholder="ФИО"
+                                aria-label="Форма"
+                                autocomplete="off">
+                                <label>Почта</label>
+                                <input
+                                type="email"
+                                id="storageEmail"
+                                class="form-control"
+                                name="q"
+                                placeholder="Ваша почта"
+                                aria-label="Форма"
+                                autocomplete="off">
+                            </div>
+                        <div class="col-md-4" style="color: white;">
+                                <label class="form-label">Название</label>
+                                <input
+                                type="text"
+                                id="storagenameitem"
+                                class="form-control"
+                                name="q"
+                                placeholder="Предмет"
+                                aria-label="Форма"
+                                autocomplete="off">
+                                <label>Местоположение</label>
+                                <input
+                                type="text"
+                                id="storagelocationitem"
+                                class="form-control"
+                                name="q"
+                                placeholder="Какая полка"
+                                aria-label="Форма"
+                                autocomplete="off">
+                        </div>
+                        <div class="col-md-4" style="color: white;">
+                                <label class="form-label">Дата</label>
+                                <input
+                                type="date"
+                                id="storagedate"
+                                class="form-control"
+                                name="q"
+                                placeholder="test"
+                                aria-label="Форма"
+                                autocomplete="off">
+                                <label>Фото</label>
+                                <input
+                                id="photoInput"
+                                type="file"
+                                class="form-control"
+                                name="q"
+                                placeholder="test"
+                                aria-label="Форма"
+                                autocomplete="off">
+                        </div>
+                        <div class="col-md-4">
+                             <div style="background-color: rgba(255, 255, 255, 0.068); width: 100%; height: 100%; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
+                            <img id="preview" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-lg" id="ButtonAdd" style="width: 100%;">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="libs/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('photoInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('image/')){
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});</script>
 </body>
 </html>
