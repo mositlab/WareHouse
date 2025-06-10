@@ -1,9 +1,14 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Xml;
+using Newtonsoft.Json;
+
+
 
 // условная бд с пользователями
 var people = new List<Person>
@@ -65,7 +70,55 @@ app.MapPost("/login", (Person loginData) =>
 });
 app.MapGet("/data", [Authorize] () => new { message = "Hello World!" });
 
+// запист в json файл
+
+app.MapPost("/api/data/save", async (HttpContext context) =>
+{
+    using var reader = new StreamReader(context.Request.Body);
+    string json = await reader.ReadToEndAsync();
+
+    // Парсим новые данные
+    var newData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+    // Путь к файлу
+    string filePath = Path.Combine("wwwroot", "data", "logs.json");
+    string directory = Path.GetDirectoryName(filePath);
+
+    // Создаём папку, если её нет
+    if (!Directory.Exists(directory))
+        Directory.CreateDirectory(directory);
+
+    List<Dictionary<string, string>> existingData = new();
+
+    // Читаем старые данные из файла
+    if (File.Exists(filePath))
+    {
+        string existingJson = await File.ReadAllTextAsync(filePath);
+        existingData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(existingJson) ?? new();
+    }
+
+    // Добавляем новые данные
+    existingData.Add(newData);
+
+    // Сохраняем обновлённый JSON
+    string updatedJson = JsonConvert.SerializeObject(existingData, Newtonsoft.Json.Formatting.Indented);
+    await File.WriteAllTextAsync(filePath, updatedJson);
+    return Results.Ok();
+});
+
+// Карточки
+app.MapGet("/api/data/load", (string filename) =>
+{
+    string filePath = Path.Combine("wwwroot", "data", filename + ".json");
+
+    if (!File.Exists(filePath))
+        return Results.NotFound("Файл не найден");
+
+    var json = File.ReadAllText(filePath);
+    return Results.Content(json, "application/json");
+});
 app.Run();
+record class Person(string Email, string Password);
 
 public class AuthOptions
 {
@@ -75,5 +128,3 @@ public class AuthOptions
     public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 }
-
-record class Person(string Email, string Password);

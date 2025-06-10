@@ -51,6 +51,7 @@ C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\Microso
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\obj\Debug\net8.0\WebApplication1.csproj.AssemblyReference.cache
 C:\Users\praktikant3\Desktop\222\server\WebApplication1\obj\Debug\net8.0\WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
