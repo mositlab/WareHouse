@@ -32,8 +32,8 @@
         <div class="modal-content bg-dark" >
             
             <div class="modal-body border border-5 rounded border-danger">
-            <div class="modal-header" id="ModalLabel" style="color: white;">
-                <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" style="padding: 2%;">Добавление предмета</div>
+            <div class="modal-header" style="color: white;">
+                <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" id="ModalLabel" style="padding: 2%;">Добавление предмета</div>
             </div>
                 <form class="input-group input-group-lg">
                     <div class="row">
@@ -43,7 +43,7 @@
                                 type="text"
                                 class="form-control"
                                 id="storagefullname"
-                                name="q"
+                                name="fullname"
                                 placeholder="ФИО"
                                 aria-label="Форма"
                                 autocomplete="off">
@@ -52,7 +52,7 @@
                                 type="email"
                                 id="storageEmail"
                                 class="form-control"
-                                name="q"
+                                name="Email"
                                 placeholder="Ваша почта"
                                 aria-label="Форма"
                                 autocomplete="off">
@@ -63,7 +63,7 @@
                                 type="text"
                                 id="storagenameitem"
                                 class="form-control"
-                                name="q"
+                                name="NameItem"
                                 placeholder="Предмет"
                                 aria-label="Форма"
                                 autocomplete="off">
@@ -72,7 +72,7 @@
                                 type="text"
                                 id="storagelocationitem"
                                 class="form-control"
-                                name="q"
+                                name="LocationItem"
                                 placeholder="Какая полка"
                                 aria-label="Форма"
                                 autocomplete="off">
@@ -83,7 +83,7 @@
                                 type="date"
                                 id="storagedate"
                                 class="form-control"
-                                name="q"
+                                name="Date"
                                 placeholder="test"
                                 aria-label="Форма"
                                 autocomplete="off">
@@ -92,16 +92,16 @@
                                 id="photoInput"
                                 type="file"
                                 class="form-control"
-                                name="q"
+                                name="Photo"
                                 placeholder="test"
                                 aria-label="Форма"
                                 autocomplete="off">
                         </div>
                         <div class="col-md-4">
                              <div style="background-color: rgba(255, 255, 255, 0.068); width: 100%; height: 100%; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
-                            <img id="preview" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                            <img id="preview" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;"></div>
                         </div>
-                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success btn-lg" id="ButtonAdd" style="width: 100%;">Добавить</button>
                     </div>
@@ -110,6 +110,7 @@
         </div>
     </div>
 </div>
+<script src="js/script.js"></script>
 <script src="libs/bootstrap.bundle.min.js"></script>
 <script>
 document.getElementById('photoInput').addEventListener('change', function (event) {
@@ -123,6 +124,7 @@ document.getElementById('photoInput').addEventListener('change', function (event
         }
         reader.readAsDataURL(file);
     }
-});</script>
+});
+</script>
 </body>
 </html>

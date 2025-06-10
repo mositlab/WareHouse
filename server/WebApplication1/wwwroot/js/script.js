@@ -117,25 +117,29 @@ document.getElementById('photoInput').addEventListener('change', function (event
     }
 });
 // Запрос на JSON файл
-document.addEventListener('DOMContentLoaded', () =>{
-    const saveButton = document.getElementById('ButtonAdd');
+document.getElementById("ButtonAdd").addEventListener('click', async (e) => {
+    e.preventDefault();
 
-    saveButton.addEventListener('click', () => {
-        const data = {
-            fullname: document.getElementById("storagefullname").value,
-            email: document.getElementById("storageEmail").value,
-            NameIem: document.getElementById("storagenameitem").value,
-            LocationItem: document.getElementById("storagelocationitem").value,
-            Date: document.getElementById("storagedate").value
-        };
+    const data = {
+        fullname: document.getElementById("storagefullname")?.value || "",
+        email: document.getElementById("storageEmail")?.value || "",
+        nameItem: document.getElementById("storagenameitem")?.value || "",
+        locationItem: document.getElementById("storagelocationitem")?.value || "",
+        date: document.getElementById("storagedate")?.value || ""
+    };
 
-        const jsonstring = json.stringify(data, null, 2);
-        
-        const blob = new Blob([jsonstring], {type: "application/json"});
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "logs.json";
-        link.click();
-        URL.revokeObjectURL(link.href);
+    // Отправляем данные на сервер
+    const response = await fetch("/data/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
     });
-})
+
+    if (response.ok) {
+        alert("Данные сохранены");
+    } else {
+        alert("Ошибка сохранения");
+    }
+});
