@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Xml;
 using Newtonsoft.Json;
-
 
 
 // условная бд с пользователями
@@ -70,15 +67,38 @@ app.MapPost("/login", (Person loginData) =>
 });
 app.MapGet("/data", [Authorize] () => new { message = "Hello World!" });
 
-// запист в json файл
-
 app.MapPost("/api/data/save", async (HttpContext context) =>
 {
     using var reader = new StreamReader(context.Request.Body);
     string json = await reader.ReadToEndAsync();
 
-    // Парсим новые данные
-    var newData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+    string filePath = Path.Combine("wwwroot", "data", "logs.json");
+    string directory = Path.GetDirectoryName(filePath);
+
+    if (!Directory.Exists(directory))
+        Directory.CreateDirectory(directory);
+
+    List<dynamic> existingData = new();
+
+    if (File.Exists(filePath))
+    {
+        string existingJson = await File.ReadAllTextAsync(filePath);
+        existingData = JsonConvert.DeserializeObject<List<dynamic>>(existingJson) ?? new();
+    }
+
+    var newData = JsonConvert.DeserializeObject(json);
+    existingData.Add(newData);
+
+    string updatedJson = JsonConvert.SerializeObject(existingData, Newtonsoft.Json.Formatting.Indented);
+    await File.WriteAllTextAsync(filePath, updatedJson);
+
+    return Results.Ok();
+});
+
+app.MapPost("/data/save", async (HttpContext context) =>
+{
+    using var reader = new StreamReader(context.Request.Body);
+    string json = await reader.ReadToEndAsync();
 
     // Путь к файлу
     string filePath = Path.Combine("wwwroot", "data", "logs.json");
@@ -88,37 +108,41 @@ app.MapPost("/api/data/save", async (HttpContext context) =>
     if (!Directory.Exists(directory))
         Directory.CreateDirectory(directory);
 
-    List<Dictionary<string, string>> existingData = new();
+    List<dynamic> existingData = new();
 
     // Читаем старые данные из файла
     if (File.Exists(filePath))
     {
         string existingJson = await File.ReadAllTextAsync(filePath);
-        existingData = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(existingJson) ?? new();
+        existingData = JsonConvert.DeserializeObject<List<dynamic>>(existingJson) ?? new();
     }
 
     // Добавляем новые данные
+    var newData = JsonConvert.DeserializeObject(json);
     existingData.Add(newData);
 
-    // Сохраняем обновлённый JSON
+    // Сохраняем обратно в файл
     string updatedJson = JsonConvert.SerializeObject(existingData, Newtonsoft.Json.Formatting.Indented);
     await File.WriteAllTextAsync(filePath, updatedJson);
-    return Results.Ok();
-});
 
-// Карточки
-app.MapGet("/api/data/load", (string filename) =>
+    return Results.Ok("Данные обновлены");
+});
+// Сохранение base64 в json
+
+
+
+app.MapGet("/data/load", () =>
 {
-    string filePath = Path.Combine("wwwroot", "data", filename + ".json");
+    string filePath = Path.Combine("wwwroot", "data", "logs.json");
 
     if (!File.Exists(filePath))
-        return Results.NotFound("Файл не найден");
+        return Results.NotFound("Файл logs.json не найден");
 
-    var json = File.ReadAllText(filePath);
+    string json = File.ReadAllText(filePath);
     return Results.Content(json, "application/json");
 });
+
 app.Run();
-record class Person(string Email, string Password);
 
 public class AuthOptions
 {
@@ -128,3 +152,5 @@ public class AuthOptions
     public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 }
+
+record class Person(string Email, string Password);

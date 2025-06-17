@@ -11,7 +11,6 @@ document.querySelector('.search-form').addEventListener('submit', function(e) {
     addItem();
 });
 
-
 function openPage() {
     
         window.open("card.html");

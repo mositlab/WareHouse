@@ -1,89 +1,104 @@
+// Запрос на JSON  --> сервер
+document.getElementById("ButtonAdd").addEventListener("click", async function (e) {
+    e.preventDefault();
 
-document.addEventListener("DOMContentLoaded", function () {
-    const saveButton = document.getElementById("ButtonAdd");
+    // Получаем данные из формы
+    const data = {
+        fullname: document.getElementById("storagefullname")?.value || "",
+        email: document.getElementById("storageEmail")?.value || "",
+        nameItem: document.getElementById("storagenameitem")?.value || "",
+        locationitem: document.getElementById("storagelocationitem")?.value || "",
+        date: document.getElementById("storagedate")?.value || ""
+    };
 
-    if (!saveButton) {
-        console.warn("Кнопка #ButtonAdd не найдена");
+    // Получаем фото
+    const photoInput = document.getElementById("photoInput");
+    const file = photoInput.files[0];
+
+    if (!file) {
+        alert("Выберите фото");
         return;
     }
 
-    saveButton.addEventListener("click", async function (e) {
-        e.preventDefault(); 
+    // Конвертируем фото в Base64
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-        const storagefullname = document.getElementById("storagefullname");
-        const storageEmail = document.getElementById("storageEmail");
-        const storagenameitem = document.getElementById("storagenameitem");
-        const storagelocationitem = document.getElementById("storagelocationitem");
-        const storagedate = document.getElementById("storagedate");
+    reader.onload = async function () {
+        const base64Image = reader.result; // ← это Data URL (включает тип и Base64)
 
-        if (!storagefullname || !storageEmail || !storagenameitem || !storagelocationitem || !storagedate) {
-            console.error("Не все элементы формы найдены");
-            return;
-        }
-
-        const data = {
-            fullname: storagefullname.value,
-            email: storageEmail.value,
-            nameItem: storagenameitem.value,
-            locationItem: storagelocationitem.value,
-            date: storagedate.value
+        // Добавляем Base64 строку к данным
+        const payload = {
+            ...data,
+            image: base64Image
         };
 
+        // Отправляем на сервер
         try {
-            const response = await fetch("/api/data/save", {
+            const response = await fetch("/data/save", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
+                body: JSON.stringify(payload)
             });
 
             if (response.ok) {
-                con
+                alert("Данные и фото успешно отправлены");
             } else {
-                console.error("Ошибка при сохранении данных");
+                alert("Ошибка при отправке данных");
             }
         } catch (error) {
-            console.error("Ошибка сети:", error);
+            console.error("Сеть сломана:", error);
+            alert("Не удалось подключиться к серверу");
         }
-    });
+    };
+
+    reader.onerror = function (error) {
+        console.error("Ошибка чтения файла", error);
+        alert("Не удалось прочитать файл");
+    };
+});
+document.addEventListener("DOMContentLoaded", () => {
+    loadItems();
 });
 
-// Карточки
 async function loadItems() {
     try {
-        const response = await fetch("/api/data/load?filename=logs");
-        if (!response.ok) throw new Error("Ошибка загрузки данных");
+        const response = await fetch("/data/load");
 
-        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`Ошибка сети: ${response.status}`);
+        }
+
+        const data = await response.json(); // получаем массив из JSON
         const container = document.getElementById("itemsList");
+
+        if (!container) {
+            console.warn("Элемент #itemsList не найден");
+            return;
+        }
+
         container.innerHTML = ""; // очищаем предыдущие элементы
 
         data.forEach(item => {
             const col = document.createElement("div");
-            col.className = "col-md-4 mb-4";
-
+            col.className = "col-md-4 mb-4 d-flex";
+            // ниже потом добавить карточки
             col.innerHTML = `
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Предмет: ${item.nameItem}</h5>
-                        <p class="card-text">
-                            <strong>ФИО:</strong> ${item.fullname}<br/>
-                            <strong>Email:</strong> ${item.email}<br/>
-                            <strong>Местоположение:</strong> ${item.locationItem}<br/>
-                            <strong>Дата:</strong> ${item.date}
-                        </p>
-                    </div>
-                </div>
+
             `;
 
             container.appendChild(col);
         });
     } catch (error) {
-        console.error("Не удалось загрузить данные:", error);
-        document.getElementById("itemsList").innerHTML = "<p>Не удалось загрузить данные</p>";
+        console.error("Ошибка загрузки:", error.message);
+        const container = document.getElementById("itemsList");
+        if (container) {
+            container.innerHTML = "<p>Не удалось загрузить данные</p>";
+        }
     }
 }
 
-// Вызываем при загрузке страницы
-document.addEventListener("DOMContentLoaded", () => {
-    loadItems(); // ← загружаем данные из JSON
-});
+// Пример функции для кнопки "Подробнее"
+function showDetails(item) {
+    alert(JSON.stringify(item, null, 2));
+}

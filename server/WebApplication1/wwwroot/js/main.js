@@ -1,50 +1,29 @@
-// === Показываем окно по клику на инпут ===
-document.addEventListener("DOMContentLoaded", function () {
-    const itemInput = document.getElementById("itemInput");
-
-    if (!itemInput) {
-        console.warn("Элемент #itemInput не найден");
-        return;
-    }
-
-    itemInput.addEventListener("click", function () {
-        const innerWindow = document.getElementById("innerWindow");
-        if (innerWindow) {
-            innerWindow.style.display = "block";
-        }
-    });
+document.getElementById('itemInput').addEventListener('click', function () {
+    const innerWindow = document.getElementById('innerWindow');
+    innerWindow.style.display = 'block';
 });
 
-// === Отправка формы поиска ===
-document.addEventListener("DOMContentLoaded", function () {
-    const searchForm = document.querySelector(".search-form");
+function kek() {
+    return "Bolt"
+}
 
-    if (searchForm) {
-        searchForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            addItem();
-        });
-    } else {
-        console.warn("Форма .search-form не найдена");
-    }
+document.querySelector('.search-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    addItem();
 });
 
-// === Функция открытия страницы card.html с параметром ===
-function openPage(item) {
-    window.open(`card.html?item=${encodeURIComponent(item)}`);
+function openPage() {
+    
+        window.open("card.html");
+    
 }
 
-function openStorage1() {
-    window.open("storage1.html");
-}
-
-// === Получение результатов поиска ===
 function addItem() {
     const input = document.getElementById('itemInput');
     const list = document.getElementById('items-list');
 
     const results = getSearchResults(input.value.trim());
-    list.innerHTML = ''; // очищаем предыдущие результаты
+    list.innerHTML = ''; // Очищаем предыдущие результаты
 
     if (results.length > 0) {
         results.forEach(item => {
@@ -52,18 +31,18 @@ function addItem() {
             const link = document.createElement('a');
 
             link.textContent = item;
-            link.href = "#";
+            link.href = "#"; // Временная заглушка
 
             // Обработчик клика по ссылке
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                input.value = item;
-                closeInnerWindow();
-                openPage(item);
+                input.value = item; // Подставляем значение в инпут
+                closeInnerWindow(); // Закрываем окно
+                openPage(item); // Передаём имя/параметр в openPage
             });
 
-            // Обработчик клика по li
-            li.addEventListener('click', function () {
+            // Обработчик клика по li — если хочешь, чтобы работало по li
+            li.addEventListener('click', function() {
                 input.value = item;
                 closeInnerWindow();
                 openPage(item);
@@ -78,43 +57,40 @@ function addItem() {
 function getSearchResults(query) {
     if (!query) return [];
 
+    // Пример: ищем совпадения в каком-то статичном списке
     const database = ["яблоко", "банан", "апельсин", "виноград", "мандарин", "персик", "баня"];
+    
+    // Фильтруем по запросу пользователя
     return database.filter(item => item.toLowerCase().includes(query.toLowerCase()));
 }
-
 function closeInnerWindow() {
     const innerWindow = document.getElementById('innerWindow');
-    if (innerWindow) {
-        innerWindow.style.display = 'none';
-    }
+    innerWindow.style.display = 'none';
+}
+function openStorage1(){
+window.open("storage1.html");
 }
 
-// === Проверка токена при загрузке страницы ===
+// token
 const tokenKey = "accessToken";
+
+// Проверяем, есть ли токен
 const token = sessionStorage.getItem(tokenKey);
 
 if (!token) {
     window.location.href = "index.html";
 } else {
-    document.addEventListener("DOMContentLoaded", async function () {
-        try {
-            const response = await fetch("/data", {
-                method: "GET",
-                headers: {
-                    "Authorization": "Bearer " + token
-                }
-            });
-
-            if (!response.ok) {
-                sessionStorage.removeItem(tokenKey);
-                window.location.href = "index.html";
-            } else {
-                const data = await response.json();
-                // можно вывести имя пользователя
-                // document.getElementById("userName").innerText = data.username;
+    // Можно вывести приветствие или продолжить работу
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Проверим токен через API (если нужно)
+        const response = await fetch("/data", {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
             }
-        } catch (error) {
-            console.error("Ошибка сети:", error);
+        });
+
+        if (!response.ok) {
             sessionStorage.removeItem(tokenKey);
             window.location.href = "index.html";
         }

@@ -27,44 +27,13 @@
         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#Modal">+</button>
     </nav>
 
-<<<<<<< HEAD
-<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" style="text-align: center;">
-    <div class="modal-dialog">
-        <div class="modal-content bg-dark" >
-            
-            <div class="modal-body border border-5 rounded border-danger">
-            <div class="modal-header" style="color: white;">
-                <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" id="ModalLabel" style="padding: 2%;">Добавление предмета</div>
-            </div>
-                <form class="input-group input-group-lg">
-                    <div class="row">
-                            <div class="col-md-4" style="color: white;">
-                                <label class="form-label">ФИО</label>
-                                <input
-                                type="text"
-                                class="form-control"
-                                id="storagefullname"
-                                name="fullname"
-                                placeholder="ФИО"
-                                aria-label="Форма"
-                                autocomplete="off">
-                                <label>Почта</label>
-                                <input
-                                type="email"
-                                id="storageEmail"
-                                class="form-control"
-                                name="Email"
-                                placeholder="Ваша почта"
-                                aria-label="Форма"
-                                autocomplete="off">
-=======
     <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" style="text-align: center;">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
 
                 <div class="modal-body border border-5 rounded border-danger">
-                    <div class="modal-header" id="ModalLabel" style="color: white;">
-                        <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" style="padding: 2%;">Добавление предмета</div>
+                    <div class="modal-header" style="color: white;">
+                        <div class="modal-title w-100 text-center fs-5 border border-5 rounded-5 border-danger" id="ModalLabel" style="padding: 2%;">Добавление предмета</div>
                     </div>
                     <form class="input-group input-group-lg">
                         <div class="row">
@@ -73,7 +42,7 @@
                                 <input type="text"
                                        class="form-control"
                                        id="storagefullname"
-                                       name="q"
+                                       name="fullname"
                                        placeholder="ФИО"
                                        aria-label="Форма"
                                        autocomplete="off">
@@ -81,87 +50,17 @@
                                 <input type="email"
                                        id="storageEmail"
                                        class="form-control"
-                                       name="q"
+                                       name="Email"
                                        placeholder="Ваша почта"
                                        aria-label="Форма"
                                        autocomplete="off">
->>>>>>> 4d7e757 (Доделанная отправка запроса в JSON файл, не доделанная добавление карточек на основе JSON данных)
                             </div>
                             <div class="col-md-4" style="color: white;">
                                 <label class="form-label">Название</label>
-<<<<<<< HEAD
-                                <input
-                                type="text"
-                                id="storagenameitem"
-                                class="form-control"
-                                name="NameItem"
-                                placeholder="Предмет"
-                                aria-label="Форма"
-                                autocomplete="off">
-                                <label>Местоположение</label>
-                                <input
-                                type="text"
-                                id="storagelocationitem"
-                                class="form-control"
-                                name="LocationItem"
-                                placeholder="Какая полка"
-                                aria-label="Форма"
-                                autocomplete="off">
-                        </div>
-                        <div class="col-md-4" style="color: white;">
-                                <label class="form-label">Дата</label>
-                                <input
-                                type="date"
-                                id="storagedate"
-                                class="form-control"
-                                name="Date"
-                                placeholder="test"
-                                aria-label="Форма"
-                                autocomplete="off">
-                                <label>Фото</label>
-                                <input
-                                id="photoInput"
-                                type="file"
-                                class="form-control"
-                                name="Photo"
-                                placeholder="test"
-                                aria-label="Форма"
-                                autocomplete="off">
-                        </div>
-                        <div class="col-md-4">
-                             <div style="background-color: rgba(255, 255, 255, 0.068); width: 100%; height: 100%; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
-                            <img id="preview" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success btn-lg" id="ButtonAdd" style="width: 100%;">Добавить</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<script src="js/script.js"></script>
-<script src="libs/bootstrap.bundle.min.js"></script>
-<script>
-document.getElementById('photoInput').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith('image/')){
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const preview = document.getElementById('preview');
-            preview.src = e.target.result;
-            preview.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
-    }
-});
-</script>
-=======
                                 <input type="text"
                                        id="storagenameitem"
                                        class="form-control"
-                                       name="q"
+                                       name="NameItem"
                                        placeholder="Предмет"
                                        aria-label="Форма"
                                        autocomplete="off">
@@ -169,7 +68,7 @@ document.getElementById('photoInput').addEventListener('change', function (event
                                 <input type="text"
                                        id="storagelocationitem"
                                        class="form-control"
-                                       name="q"
+                                       name="LocationItem"
                                        placeholder="Какая полка"
                                        aria-label="Форма"
                                        autocomplete="off">
@@ -179,15 +78,16 @@ document.getElementById('photoInput').addEventListener('change', function (event
                                 <input type="date"
                                        id="storagedate"
                                        class="form-control"
-                                       name="q"
+                                       name="Date"
                                        placeholder="test"
                                        aria-label="Форма"
                                        autocomplete="off">
                                 <label>Фото</label>
                                 <input id="photoInput"
                                        type="file"
+                                       accept=""
                                        class="form-control"
-                                       name="q"
+                                       name="Photo"
                                        placeholder="test"
                                        aria-label="Форма"
                                        autocomplete="off">
@@ -206,15 +106,11 @@ document.getElementById('photoInput').addEventListener('change', function (event
             </div>
         </div>
     </div>
-
-    <div class="container mt-4">
-        <h2>Список предметов</h2>
-        <div id="itemsList" class="row">
-            <!-- Здесь будут появляться карточки -->
-        </div>
+    <div id="itemsList" class="row g-4">
     </div>
-
-    <script src="js/script.js"></script>
+ <div class="container bg-light">
+<img src="images/bolt.jpg" class="img-fluid float-end" style="width: 320px; height: 240px;border-radius: 15px; aspect-ratio: 4/3;">
+ </div>
     <script src="js/storage1.js"></script>
     <script src="libs/bootstrap.bundle.min.js"></script>
     <script>
@@ -231,6 +127,5 @@ document.getElementById('photoInput').addEventListener('change', function (event
             }
         });
     </script>
->>>>>>> 4d7e757 (Доделанная отправка запроса в JSON файл, не доделанная добавление карточек на основе JSON данных)
 </body>
 </html>
