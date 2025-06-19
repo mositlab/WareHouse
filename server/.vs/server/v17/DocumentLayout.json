@@ -1,38 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\praktikant3\\Desktop\\222\\server\\",
+  "WorkspaceRootPath": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\storage1.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\wwwroot\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\main.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\wwwroot\\storage1.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\storage1.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\js\\storage1.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\storage1.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\wwwroot\\data\\logs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\data\\logs.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\authoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\authoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\webapplication1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\webapplication1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\js\\card.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\wwwroot\\js\\card.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\card.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\222\\server\\webapplication1\\wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\authoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\authoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|c:\\users\\praktikant3\\desktop\\\u043D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\warehouse\\server\\webapplication1\\webapplication1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{768A387B-A78D-40CE-8119-C19325217163}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\webapplication1.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,17 +46,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "storage1.html",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\storage1.html",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\storage1.html",
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\storage1.html",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\storage1.html",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\storage1.html",
               "RelativeToolTip": "WebApplication1\\wwwroot\\storage1.html",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGUAAABgAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAI4AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-06-09T08:43:48.766Z",
               "IsPinned": true,
@@ -60,94 +64,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "storage1.js",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\storage1.js",
-              "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\js\\storage1.js",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\storage1.js",
-              "RelativeToolTip": "WebApplication1\\wwwroot\\js\\storage1.js",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFUAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-13T01:28:01.063Z",
+              "DocumentIndex": 3,
+              "Title": "logs.json",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\data\\logs.json",
+              "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\data\\logs.json",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\data\\logs.json",
+              "RelativeToolTip": "WebApplication1\\wwwroot\\data\\logs.json",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-18T11:00:36.536Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
+              "Title": "main.html",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\main.html",
+              "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\main.html",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\main.html",
+              "RelativeToolTip": "WebApplication1\\wwwroot\\main.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-06-18T13:04:14.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "main.js",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\main.js",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\js\\main.js",
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\js\\main.js",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\main.js",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\js\\main.js",
               "RelativeToolTip": "WebApplication1\\wwwroot\\js\\main.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAAGQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-06-13T01:27:56.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "card.js",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\card.js",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\js\\card.js",
               "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\js\\card.js",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\wwwroot\\js\\card.js",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\wwwroot\\js\\card.js",
               "RelativeToolTip": "WebApplication1\\wwwroot\\js\\card.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-06-13T01:22:57.22Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "AuthOptions.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\AuthOptions.cs",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\AuthOptions.cs",
               "RelativeDocumentMoniker": "WebApplication1\\AuthOptions.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\AuthOptions.cs",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\AuthOptions.cs",
               "RelativeToolTip": "WebApplication1\\AuthOptions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-05T10:37:02.5Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T10:37:02.5Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Properties\\launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "WebApplication1\\Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\Properties\\launchSettings.json",
               "RelativeToolTip": "WebApplication1\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-06-04T12:04:24.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T12:04:24.594Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\Program.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\Program.cs",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\Program.cs",
               "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAAAJcAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAkwJ8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-04T11:39:21.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-04T11:39:21.501Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "WebApplication1.csproj",
-              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\WebApplication1.csproj",
+              "DocumentMoniker": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\WebApplication1.csproj",
               "RelativeDocumentMoniker": "WebApplication1\\WebApplication1.csproj",
-              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\WebApplication1.csproj",
+              "ToolTip": "C:\\Users\\praktikant3\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430\\WareHouse\\server\\WebApplication1\\WebApplication1.csproj",
               "RelativeToolTip": "WebApplication1\\WebApplication1.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-06-05T10:13:43.948Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-05T10:13:43.948Z"
             }
           ]
         }

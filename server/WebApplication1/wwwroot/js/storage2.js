@@ -1,11 +1,3 @@
-//Вернуться обратно
-function backtomain() {
-
-    window.open("main.html");
-
-}
-
-
 // Запрос на JSON  --> сервер
 document.getElementById("ButtonAdd").addEventListener("click", async function (e) {
     e.preventDefault();
@@ -106,14 +98,11 @@ async function loadItems() {
             `;
 
             container.appendChild(card);
-            
         });
     } catch (error) {
         console.error("Ошибка:", error);
         document.getElementById("itemsList").innerHTML = "<p>Не удалось загрузить данные</p>";
     }
-    window.onload = loadItems;
-
 }
 
 async function confirmDelete() {
@@ -138,6 +127,7 @@ async function confirmDelete() {
         alert("Ошибка при удалении");
     }
 }
+
 // Вызываем при загрузке страницы
 document.addEventListener("DOMContentLoaded", () => {
     loadItems();

@@ -12,40 +12,38 @@
         <div class="container-fluid">
             <form class="container-fluid justify-content-start">
                 <button type="button" class="btn btn-outline-danger active btn-lg" style="width: 120px;">Главная</button>
-                <button type="button" class="btn btn-outline-danger btn-lg" style="width: 120px;">text</button>
+                <button type="button" class="btn btn-outline-success btn-lg" onclick="openConstructor()" style="width: 120px;">Добавить склад</button>
                 <button type="button" class="btn btn-outline-danger btn-lg" style="width: 120px;">text</button>
             </form>
         </div>
     </nav>
+    <!-- Модальное окно конструктора -->
+
+
 
     <div class="main-1">
         <form method="GET" class="input-group input-group-lg search-form">
-            <input 
-                type="text" 
-                class="form-control" 
-                id="itemInput"
-                name="q" 
-                placeholder="ПОИСК" 
-                aria-label="Поисковый запрос" 
-                aria-describedby="search-label"
-                autocomplete="off">
+            <input type="text"
+                   class="form-control"
+                   id="itemInput"
+                   name="q"
+                   placeholder="ПОИСК"
+                   aria-label="Поисковый запрос"
+                   aria-describedby="search-label"
+                   autocomplete="off">
             <button onclick="addItem()" class="btn btn-danger" type="submit">Найти</button>
         </form>
         <div class="inner-window" id="innerWindow">
             <span class="close-btn" onclick="closeInnerWindow()">✕</span>
-               <ul id="items-list"></ul>
+            <ul id="items-list"></ul>
         </div>
-        <div class="container text-center content-container">
-            <div class="row">
-                <div class="col bg-body-tertiary">
-                    <button onclick="openStorage1()" class="storages"><h3>Склад 1</h3></button>
-                </div>
-                <div class="col bg-body-tertiary">
-                    <button class="storages"><h3>Склад 2</h3></button>
-                </div>
-            </div>
-        </div>
+        <hr class="w-100 my-5">
+
     </div>
-<script src="js/main.js"></script>
+    <div class="container border border-5 border-danger rounded-5">
+        <div id="storages" class="w-100"></div>
+    </div>
+    <script src="js/main.js"></script>
+    <script src="libs/bootstrap.bundle.min.js"></script>
 </body>
 </html>

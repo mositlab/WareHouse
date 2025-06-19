@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i62iaUXDm/g=",
+  "dgSpecHash": "iZtf6mCKny4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\praktikant3\\Desktop\\222\\server\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\praktikant3\\Desktop\\Новая папка\\WareHouse\\server\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\praktikant3\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.5\\microsoft.aspnetcore.authentication.jwtbearer.8.0.5.nupkg.sha512",
     "C:\\Users\\praktikant3\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",

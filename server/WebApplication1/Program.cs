@@ -128,9 +128,6 @@ app.MapPost("/data/save", async (HttpContext context) =>
     return Results.Ok("Данные обновлены");
 });
 // Сохранение base64 в json
-
-
-
 app.MapGet("/data/load", () =>
 {
     string filePath = Path.Combine("wwwroot", "data", "logs.json");
@@ -140,6 +137,31 @@ app.MapGet("/data/load", () =>
 
     string json = File.ReadAllText(filePath);
     return Results.Content(json, "application/json");
+});
+// Модальное окно удаления
+app.MapDelete("/data/delete/{id}", async (string id) =>
+{
+    string filePath = Path.Combine("wwwroot", "data", "logs.json");
+
+    if (!File.Exists(filePath))
+        return Results.NotFound("Файл не найден");
+
+    string existingJson = await File.ReadAllTextAsync(filePath);
+    var items = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(existingJson);
+
+    if (items == null)
+        return Results.BadRequest("Не удалось прочитать файл");
+
+    var itemToRemove = items.FirstOrDefault(i => i.ContainsKey("id") && i["id"] == id);
+    if (itemToRemove == null)
+        return Results.NotFound("Элемент не найден");
+
+    items.Remove(itemToRemove);
+
+    string updatedJson = JsonConvert.SerializeObject(items, Newtonsoft.Json.Formatting.Indented);
+    await File.WriteAllTextAsync(filePath, updatedJson);
+
+    return Results.Ok("Элемент удален");
 });
 
 app.Run();
