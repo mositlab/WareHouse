@@ -1,6 +1,5 @@
-wwwroot\card.html
-wwwroot\css\styles.css
 wwwroot\data\items.json
+wwwroot\data\logs.json
 wwwroot\images\bolt.jpg
 wwwroot\index.html
 wwwroot\js\card.js
@@ -12,6 +11,5 @@ wwwroot\libs\bootstrap.min.css
 wwwroot\nonindex.html
 wwwroot\storage1.html
 wwwroot\storage2.html
-wwwroot\data\logs.json
 wwwroot\js\main.js
 wwwroot\main.html

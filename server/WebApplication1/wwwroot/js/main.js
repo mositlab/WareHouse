@@ -67,401 +67,443 @@ function closeInnerWindow() {
     const innerWindow = document.getElementById('innerWindow');
     innerWindow.style.display = 'none';
 }
-// Открытие складов
-function openStorage1(){
-window.open("storage1.html");
-}
-function openStorage2(){
-window.open("storage2.html");
-}
 // token
 const tokenKey = "accessToken";
 
 // Проверяем, есть ли токен
+const tokenKey = "accessToken";
 const token = sessionStorage.getItem(tokenKey);
 
 if (!token) {
     window.location.href = "index.html";
 } else {
-    // Можно вывести приветствие или продолжить работу
     document.addEventListener("DOMContentLoaded", async () => {
-        // Проверим токен через API (если нужно)
-        const response = await fetch("/data", {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + token
-            }
-        });
+        try {
+            const response = await fetch("/api/data/check-token", {
+                method: "GET",
+                headers: {
+                    "Authorization": "Bearer " + token
+                }
+            });
 
-        if (!response.ok) {
-            sessionStorage.removeItem(tokenKey);
+            if (!response.ok) {
+                // Токен недействителен → удаляем его
+                sessionStorage.removeItem(tokenKey);
+                window.location.href = "index.html";
+            } else {
+                console.log("Токен действителен");
+                // Можно показать данные пользователя или интерфейс
+            }
+        } catch (error) {
+            console.error("Ошибка сети:", error);
+            alert("Не удалось проверить токен");
             window.location.href = "index.html";
         }
     });
 }
-// Склады
-async function loadStorage() {
+
+// Загрузка складов
+async function loadStorages() {
     try {
-        const storageContainer = document.getElementById("storages");
-        if (!storageContainer) {
-            console.error("Контейнер 'storages' не найден");
-            return;
+        const response = await fetch("/api/storage/list");
+        const data = await response.json(); // Получаем массив складов
+
+        const buttonsContainer = document.getElementById("storageButtons");
+        buttonsContainer.innerHTML = "";
+
+        data.forEach(storage => {
+            const button = document.createElement("button");
+            button.className = "btn btn-outline-primary m-2";
+            button.textContent = `${storage.name} (${storage.storageId})`;
+            button.onclick = () => showStorage(storage.storageId);
+            buttonsContainer.appendChild(button);
+        });
+
+        // По умолчанию показываем первый склад
+        if (data.length > 0) {
+            showStorage(data[0].storageId);
         }
 
-        storageContainer.innerHTML = ""; // Очищаем предыдущее содержимое
+    } catch (error) {
+        console.error("Ошибка загрузки складов:", error);
+        alert("Не удалось загрузить список складов");
+    }
+}
+// Создание склада
+async function addNewStorage() {
+    const numberInput = document.getElementById("storageNumberInput");
+    const nameInput = document.getElementById("storageNameInput");
 
-        // Создаём один раз структуру склада
-        const storageHTML = `
-           <!-- Обёртка для центрирования -->
-<div class="d-flex justify-content-center align-items-center min-vh-100 w-100">
-    <div class="text-center w-100" style="max-width: 1200px; padding: 20px;">
+    const storageId = numberInput.value.trim();
+    const storageName = nameInput.value.trim();
 
-        <!-- Навбар по центру -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary border border-danger border-5 mb-4 mx-auto" style="width: 52%; padding: 1%; border-radius: 10px; background-color: #f8f9fa; color: #2f2f2f;">
-            <div class="container-fluid d-flex flex-column align-items-center">
-                <h1 class="mb-3">Склад 1</h1>
-                <div class="btn-group mb-3" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#deleteModal">-</button>
-                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#Modal">+</button>
-                </div>
-               
-            </div>
-        </nav>
+    if (!storageId || isNaN(storageId)) {
+        alert("Введите корректный номер склада");
+        return;
+    }
 
-        <!-- Модальное окно удаления -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Удалить элемент</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label for="deleteIdInput" class="form-label">Введите ID:</label>
-                        <input type="text" class="form-control" id="deleteIdInput" placeholder="Например: abc123xyz">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Подтвердить удаление</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    if (!storageName) {
+        alert("Введите название склада");
+        return;
+    }
 
-        <!-- Модальное окно добавления -->
-        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-center fs-5 border border-5 rounded-5 border-danger p-2" id="ModalLabel">Добавление предмета</h5>
-                    </div>
-                    <div class="modal-body">
-                        <form id="addItemForm" class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label">ФИО</label>
-                                <input type="text" class="form-control" id="storagefullname" placeholder="ФИО">
+    // Проверяем, не создан ли уже такой склад
+    const container = document.getElementById(`storagePanel-${storageId}`);
+    if (container) {
+        alert("Этот склад уже существует");
+        return;
+    }
+
+    // Генерируем HTML для нового склада
+    const panelHTML = `
+        <div id="storagePanel-${storageId}" class="storage-panel">
+            <!-- Обёртка для центрирования -->
+            <div class="d-flex justify-content-center align-items-center min-vh-100 w-100">
+                <div class="text-center w-100" style="max-width: 1200px; padding: 20px;">
+
+                    <!-- Навбар по центру -->
+                    <nav class="navbar navbar-expand-lg bg-body-tertiary border border-danger border-5 mb-4 mx-auto" style="width: 52%; padding: 1%; border-radius: 10px; background-color: #f8f9fa; color: #2f2f2f;">
+                        <div class="container-fluid d-flex flex-column align-items-center">
+                            <h1 class="mb-3">Склад ${storageId}: ${storageName}</h1>
+                            <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#deleteModal-${storageId}">-</button>
+                                <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#Modal-${storageId}">+</button>
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" id="storageEmail" placeholder="Ваша почта">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Название</label>
-                                <input type="text" class="form-control" id="storagenameitem" placeholder="Предмет">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Место</label>
-                                <input type="text" class="form-control" id="storagelocationitem" placeholder="Какая полка">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Дата</label>
-                                <input type="date" class="form-control" id="storagedate">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label">Фото</label>
-                                <input type="file" id="photoInput" class="form-control" accept="image/*">
-                            </div>
-                            <div class="col-md-4">
-                                <div class="border border-danger border-5" style="background-color: #222; width: 100%; height: auto; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
-                                    <img id="preview" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </nav>
+
+                    <!-- Модальное окно удаления -->
+                    <div class="modal fade" id="deleteModal-${storageId}" tabindex="-1" aria-labelledby="deleteModalLabel-${storageId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel-${storageId}">Удалить элемент</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="deleteIdInput-${storageId}" class="form-label">Введите ID:</label>
+                                    <input type="text" class="form-control" id="deleteIdInput-${storageId}" placeholder="Например: abc123xyz">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                                    <button type="button" class="btn btn-danger" onclick="confirmDelete(${storageId})">Подтвердить удаление</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success w-100" id="ButtonAdd">Добавить</button>
+
+                    <!-- Модальное окно добавления -->
+                    <div class="modal fade" id="Modal-${storageId}" tabindex="-1" aria-labelledby="ModalLabel-${storageId}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center fs-5 border border-5 rounded-5 border-danger p-2" id="ModalLabel-${storageId}">Добавление предмета</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="addItemForm-${storageId}" class="row g-3">
+                                        <div class="col-md-4">
+                                            <label class="form-label">ФИО</label>
+                                            <input type="text" class="form-control" id="storagefullname-${storageId}" placeholder="ФИО">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="storageEmail-${storageId}" placeholder="Ваша почта">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Название</label>
+                                            <input type="text" class="form-control" id="storagenameitem-${storageId}" placeholder="Предмет">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Место</label>
+                                            <input type="text" class="form-control" id="storagelocationitem-${storageId}" placeholder="Какая полка">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Дата</label>
+                                            <input type="date" class="form-control" id="storagedate-${storageId}">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Фото</label>
+                                            <input type="file" id="photoInput-${storageId}" class="form-control" accept="image/*">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="border border-danger border-5" style="background-color: #222; width: 100%; height: auto; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
+                                                <img id="preview-${storageId}" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success w-100" onclick="addItemToStorage(${storageId})">Добавить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер для карточек -->
+                    <div id="itemsList-${storageId}" class="row g-4 my-3 overflow-auto p-3 border border-danger border-5" style="width: 50%; height: 700px; background-color: rgba(75, 75, 74, 0.151); margin: 0 auto;">
+                        <!-- Здесь будут динамически добавленные карточки -->
                     </div>
                 </div>
             </div>
         </div>
+    `;
 
-        <!-- Контейнер для карточек -->
-        <div id="itemsList" class="row g-4 my-3 overflow-auto p-3 border border-danger border-5" style="width: 50%; height: 700px; background-color: rgba(75, 75, 74, 0.151); margin: 0 auto;">
-            <!-- Здесь будут динамически добавленные карточки -->
-        </div>
-    </div>
-</div>
-        `;
+    const storagesContainer = document.getElementById("storagesContainer");
+    storagesContainer.insertAdjacentHTML("beforeend", panelHTML);
 
-        // Вставляем разметку в контейнер
-        storageContainer.insertAdjacentHTML("beforeend", storageHTML);
+    // Добавляем обработчик для превью изображения
+    setupImagePreview(storageId);
 
-        // Теперь можно подключить обработчики
-        setupEventListeners();
+    // Загружаем карточки для этого склада
+    loadItems(storageId);
 
-        // После вставки формы, подключаем превью фото
-        const photoInput = document.getElementById("photoInput");
-        if (photoInput) {
-            photoInput.addEventListener("change", function () {
-                const file = this.files[0];
-                if (file && file.type.startsWith("image/")) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        const preview = document.getElementById("preview");
-                        if (preview) {
-                            preview.src = e.target.result;
-                            preview.style.display = "block";
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                }
+    // Обновляем список кнопок
+    renderStorageButtons();
+
+    // Закрываем модальное окно
+    const modal = bootstrap.Modal.getInstance(document.getElementById("Constructor"));
+    if (modal) {
+        modal.hide();
+    }
+
+    // Очищаем поля
+    numberInput.value = "";
+    nameInput.value = "";
+}
+
+// Функция для настройки превью изображения
+function setupImagePreview(storageId) {
+    const photoInput = document.getElementById(`photoInput-${storageId}`);
+    const preview = document.getElementById(`preview-${storageId}`);
+
+    if (photoInput && preview) {
+        photoInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+}
+function generateId() {
+    return Math.random().toString(36).substr(2, 9); // например: abcdefg12
+}
+// Функция добавления предмета на склад
+async function addItemToStorage(storageId) {
+    const fullname = document.getElementById(`storagefullname-${storageId}`).value.trim();
+    const email = document.getElementById(`storageEmail-${storageId}`).value.trim();
+    const nameItem = document.getElementById(`storagenameitem-${storageId}`).value.trim();
+    const locationitem = document.getElementById(`storagelocationitem-${storageId}`).value.trim();
+    const date = document.getElementById(`storagedate-${storageId}`).value.trim();
+    const photoInput = document.getElementById(`photoInput-${storageId}`);
+    const file = photoInput.files[0];
+
+    if (!fullname || !email || !nameItem || !locationitem || !date) {
+        alert("Заполните все поля");
+        return;
+    }
+
+    // Собираем данные
+    const data = {
+        id: generateId(),
+        storageId,
+        fullname,
+        email,
+        nameItem,
+        locationitem,
+        date
+    };
+
+    // Если есть фото — конвертируем в Base64
+    if (file && file.type.startsWith("image/")) {
+        const reader = new FileReader();
+
+        reader.onload = async function () {
+            data.image = reader.result; // base64
+
+            // Отправляем как JSON
+            const response = await fetch("/api/data/save", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
             });
+
+            if (response.ok) {
+                const modal = bootstrap.Modal.getInstance(document.getElementById(`Modal-${storageId}`));
+                if (modal) modal.hide();
+
+                document.getElementById(`addItemForm-${storageId}`).reset();
+                document.getElementById(`preview-${storageId}`).style.display = 'none';
+
+                loadItems(storageId); // обновляем список
+            } else {
+                alert("Ошибка при отправке данных");
+            }
+        };
+
+        reader.onerror = function () {
+            alert("Не удалось прочитать файл");
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert("Выберите изображение");
+    }
+}
+
+// Функция подтверждения удаления
+async function confirmDelete(storageId) {
+    const deleteIdInput = document.getElementById(`deleteIdInput-${storageId}`);
+    const itemId = deleteIdInput.value.trim();
+
+    if (!itemId) {
+        alert("Введите ID предмета для удаления");
+        return;
+    }
+
+    try {
+        const response = await fetch('/data/delete', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: itemId, storageId: storageId })
+        });
+
+        if (response.ok) {
+            // Закрываем модальное окно
+            const modal = bootstrap.Modal.getInstance(document.getElementById(`deleteModal-${storageId}`));
+            if (modal) {
+                modal.hide();
+            }
+
+            // Очищаем поле ввода
+            deleteIdInput.value = "";
+
+            // Перезагружаем список предметов
+            loadItems(storageId);
+        } else {
+            alert("Ошибка при удалении предмета");
         }
-
-        // Загружаем существующие элементы
-        await loadItems();
-
     } catch (error) {
         console.error("Ошибка:", error);
-        const storageContainer = document.getElementById("storages");
-        if (storageContainer) {
-            storageContainer.innerHTML = "<p>Не удалось загрузить интерфейс склада</p>";
-        }
+        alert("Ошибка при удалении предмета");
     }
 }
 
-function setupEventListeners() {
-    const buttonAdd = document.getElementById("ButtonAdd");
-    if (buttonAdd) {
-        buttonAdd.addEventListener("click", async function (e) {
-            e.preventDefault();
-
-            function generateId() {
-                return Math.random().toString(36).substr(2, 9);
-            }
-
-            // Получаем значения из полей
-            const fullnameEl = document.getElementById("storagefullname");
-            const emailEl = document.getElementById("storageEmail");
-            const nameItemEl = document.getElementById("storagenameitem");
-            const locationItemEl = document.getElementById("storagelocationitem");
-            const dateEl = document.getElementById("storagedate");
-            const photoInput = document.getElementById("photoInput");
-
-            if (!fullnameEl || !emailEl || !nameItemEl || !locationItemEl || !dateEl || !photoInput) {
-                alert("Не все элементы формы найдены");
-                return;
-            }
-
-            const data = {
-                id: generateId(),
-                fullname: fullnameEl.value || "",
-                email: emailEl.value || "",
-                nameItem: nameItemEl.value || "",
-                locationitem: locationItemEl.value || "",
-                date: dateEl.value || ""
-            };
-
-            const file = photoInput.files[0];
-            if (!file) {
-                alert("Выберите фото");
-                return;
-            }
-
-            try {
-                const reader = new FileReader();
-                reader.onload = async function () {
-                    const base64Image = reader.result;
-                    data.image = base64Image;
-
-                    try {
-                        // Попробуем отправить на сервер
-                        const response = await fetch("/data/save", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify(data)
-                        });
-
-                        if (response.ok) {
-                            console.log("лак");
-                        } else {
-                            console.log("анлак");
-                        }
-                    } catch (fetchError) {
-                        console.log(fetchError.message);
-                    }
-
-                    // В любом случае добавляем в локальный массив
-                    itemsData.push(data);
-
-                    alert("Данные сохранены!");
-
-                    // Очищаем форму
-                    fullnameEl.value = "";
-                    emailEl.value = "";
-                    nameItemEl.value = "";
-                    locationItemEl.value = "";
-                    dateEl.value = "";
-                    photoInput.value = "";
-                    const preview = document.getElementById("preview");
-                    if (preview) {
-                        preview.style.display = "none";
-                    }
-
-                    // Обновляем отображение
-                    displayItems();
-
-                    // Закрываем модальное окно
-                    const modal = document.getElementById("Modal");
-                    if (modal && window.bootstrap) {
-                        const modalInstance = bootstrap.Modal.getInstance(modal);
-                        if (modalInstance) {
-                            modalInstance.hide();
-                        }
-                    }
-                };
-
-                reader.onerror = function (error) {
-                    console.error("Ошибка чтения файла", error);
-                    alert("Не удалось прочитать файл");
-                };
-
-                reader.readAsDataURL(file);
-            } catch (error) {
-                console.error("Ошибка при обработке файла:", error);
-                alert("Ошибка при обработке файла");
-            }
-        });
-    }
-}
-
-
-
-async function loadItems() {
-
+// Исправленная функция загрузки карточек
+async function loadItems(storageId) {
     try {
-        // Попробуем загрузить с сервера
-        const response = await fetch("/data/load");
-        if (response.ok) {
-            const data = await response.json();
-            itemsData = Array.isArray(data) ? data : [];
-        } else {
-            console.log("⚠️ Сервер недоступене");
-        }
-    } catch (error) {
-        console.log(error.message);
-    }
+        const response = await fetch(`/data/load?storageId=${storageId}`);
+        const data = await response.json();
+        const container = document.getElementById(`itemsList-${storageId}`);
 
-    // Отображаем данные
-    displayItems();
-}
-
-function displayItems() {
-
-    const container = document.getElementById("itemsList");
-
-    if (!container) {
-        // Попробуем найти через более общий селектор
-        const allContainers = document.querySelectorAll("[id='itemsList']");
-
-        if (allContainers.length === 0) {
-            console.error("❌ Контейнер itemsList действительно не существует");
+        if (!container) {
+            console.error("Контейнер не найден");
             return;
         }
-    }
 
-    container.innerHTML = ""; // Очищаем старые данные
+        container.innerHTML = ""; // очищаем старое содержимое
 
-    if (itemsData.length === 0) {
-        container.innerHTML = "<p class='text-center text-muted'>Нет данных для отображения</p>";
-        return;
-    }
-
-
-    itemsData.forEach((item, index) => {
-
-        const card = document.createElement("div");
-        card.className = "d-flex align-items-center border border-5 border-danger rounded shadow-sm p-4 mb-4 bg-white";
-        card.style.height = "250px";
-
-        card.innerHTML = `
-            <div class="flex-grow-1 me-4">
-                <p class="text-secondary fw-bold">ID: ${item.id || "—"}</p>
-                <h4 class="text-success fw-bold">${item.nameItem || "—"}</h4><br>
-                <strong class="mb-2 text-muted">ФИО: ${item.fullname || "—"}</strong><br>
-                <strong class="mb-2 text-muted">Email: ${item.email || "—"}</strong><br>
-                <strong class="mb-2 text-muted">Место: ${item.locationitem || "—"}</strong><br>
-                <strong class="mb-2 text-muted">Дата: ${item.date || "—"}</strong>
-            </div>
-            <div style="flex-shrink: 0; width: 180px;">
-                <img src="${item.image || 'images/default.jpg'}" 
-                     alt="${item.nameItem || 'Предмет'}" 
-                     class="img-fluid rounded shadow-sm"
-                     onerror="this.src='images/default.jpg'" />
-            </div>
-        `;
-
-        container.appendChild(card);
-    });
-
-}
-
-// Функция для удаления элемента (если нужна)
-async function confirmDelete() {
-    const deleteIdInput = document.getElementById("deleteIdInput");
-    if (!deleteIdInput) {
-        alert("Поле для ID не найдено");
-        return;
-    }
-
-    const itemId = deleteIdInput.value.trim();
-    if (!itemId) {
-        alert("Введите ID элемента");
-        return;
-    }
-
-    try {
-        const response = await fetch(`/data/delete/${itemId}`, {
-            method: "DELETE"
-        });
-
-        if (response.ok) {
-            alert("Элемент удален");
-            deleteIdInput.value = "";
-            await loadItems();
-
-            // Закрываем модальное окно
-            const modal = document.getElementById("deleteModal");
-            if (modal && window.bootstrap) {
-                const modalInstance = bootstrap.Modal.getInstance(modal);
-                if (modalInstance) {
-                    modalInstance.hide();
-                }
-            }
-        } else {
-            const errorText = await response.text();
-            alert(`Ошибка при удалении: ${errorText}`);
+        if (!data.length) {
+            container.innerHTML = "<p class='text-center'>Нет данных</p>";
+            return;
         }
+
+        data.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "col-md-6 mb-3";
+            card.innerHTML = `
+                <div class="card h-100">
+                    <div class="card-body d-flex">
+                        <div class="flex-grow-1 me-3">
+                            <p class="text-secondary fw-bold small">ID: ${item.id || "—"}</p>
+                            <h5 class="card-title text-success fw-bold">${item.nameItem || "—"}</h5>
+                            <p class="card-text">
+                                <strong class="text-muted">ФИО:</strong> ${item.fullname || "—"}<br>
+                                <strong class="text-muted">Email:</strong> ${item.email || "—"}<br>
+                                <strong class="text-muted">Место:</strong> ${item.locationitem || "—"}<br>
+                                <strong class="text-muted">Дата:</strong> ${item.date || "—"}
+                            </p>
+                        </div>
+                        <div style="flex-shrink: 0; width: 120px;">
+                            <img src="${item.image || 'images/default.jpg'}" 
+                                 alt="${item.nameItem || 'Предмет'}" 
+                                 class="img-fluid rounded shadow-sm"
+                                 style="width: 100%; height: 100px; object-fit: cover;"
+                                 onerror="this.src='images/default.jpg'" />
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
     } catch (error) {
-        console.error("Ошибка при удалении:", error);
-        alert("Ошибка при удалении элемента");
+        console.error("Ошибка:", error);
+        const container = document.getElementById(`itemsList-${storageId}`);
+        if (container) {
+            container.innerHTML = "<p class='text-center text-danger'>Ошибка загрузки данных</p>";
+        }
     }
 }
 
+// Обновление кнопок
+function renderStorageButtons() {
+    const storagesContainer = document.getElementById("storagesContainer");
+
+    if (!storagesContainer) {
+        console.error("Контейнер storagesContainer не найден");
+        return;
+    }
+
+    // Получаем все панели складов
+    const panels = storagesContainer.querySelectorAll(".storage-panel");
+    const buttonsContainer = document.getElementById("storageButtons");
+
+    if (!buttonsContainer) {
+        console.error("Контейнер storageButtons не найден");
+        return;
+    }
+
+    buttonsContainer.innerHTML = "";
+
+    panels.forEach(panel => {
+        const id = panel.id.replace("storagePanel-", "");
+        const storageTitle = panel.querySelector("h1").textContent;
+
+        const button = document.createElement("button");
+        button.className = "btn btn-outline-primary m-1";
+        button.textContent = storageTitle;
+        button.onclick = () => {
+            scrollToStorage(id);
+        };
+
+        buttonsContainer.appendChild(button);
+    });
+}
+
+// Прокрутка к складу
+function scrollToStorage(storageId) {
+    const element = document.getElementById(`storagePanel-${storageId}`);
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+}
 
 // При загрузке страницы
 document.addEventListener("DOMContentLoaded", function () {
-    loadStorage();
+    // Убираем автоматический вызов addNewStorage()
+    // addNewStorage();
 
-    window.displayItems = displayItems;
+    // Добавляем функции в глобальную область видимости
+    window.addItemToStorage = addItemToStorage;
+    window.confirmDelete = confirmDelete;
+    window.scrollToStorage = scrollToStorage;
 });

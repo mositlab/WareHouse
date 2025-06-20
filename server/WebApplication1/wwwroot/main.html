@@ -1,49 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="libs/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <title>Главная</title>
+    <title>Система управления складами</title>
 </head>
 <body>
+    <!-- Навигационная панель -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="width: 22%; border-radius: 10px;">
         <div class="container-fluid">
-            <form class="container-fluid justify-content-start">
-                <button type="button" class="btn btn-outline-danger active btn-lg" style="width: 120px;">Главная</button>
-                <button type="button" class="btn btn-outline-success btn-lg" onclick="openConstructor()" style="width: 120px;">Добавить склад</button>
-                <button type="button" class="btn btn-outline-danger btn-lg" style="width: 120px;">text</button>
-            </form>
+            <div class="d-flex flex-column gap-2 w-100">
+                <button type="button" class="btn btn-outline-danger active btn-lg">Главная</button>
+                <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" data-bs-target="#Constructor">Добавить склад</button>
+                <button type="button" class="btn btn-outline-danger btn-lg">Настройки</button>
+            </div>
         </div>
     </nav>
-    <!-- Модальное окно конструктора -->
 
+    <!-- Модальное окно конструктора складов -->
+    <div class="modal fade" id="Constructor" tabindex="-1" aria-labelledby="constructorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="constructorModalLabel">Добавление склада</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="storageNumberInput" class="form-label">Введите номер склада:</label>
+                        <input type="number" class="form-control" id="storageNumberInput" placeholder="Например: 1" min="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="storageNameInput" class="form-label">Введите название склада:</label>
+                        <input type="text" class="form-control" id="storageNameInput" placeholder="Например: Кладовка с болтами">
+                    </div>
+                </div>
+                <div class="modal-footer">x
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-success" onclick="addNewStorage()">Добавить склад</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
+    <!-- Основное содержимое -->
     <div class="main-1">
-        <form method="GET" class="input-group input-group-lg search-form">
-            <input type="text"
-                   class="form-control"
-                   id="itemInput"
-                   name="q"
-                   placeholder="ПОИСК"
-                   aria-label="Поисковый запрос"
-                   aria-describedby="search-label"
-                   autocomplete="off">
-            <button onclick="addItem()" class="btn btn-danger" type="submit">Найти</button>
-        </form>
-        <div class="inner-window" id="innerWindow">
+        <!-- Форма поиска -->
+        <div class="container mt-4">
+            <div class="input-group input-group-lg search-form">
+                <input type="text"
+                       class="form-control"
+                       id="itemInput"
+                       placeholder="ПОИСК ПО ПРЕДМЕТАМ"
+                       aria-label="Поисковый запрос"
+                       autocomplete="off">
+                <button onclick="searchItems()" class="btn btn-danger" type="button">Найти</button>
+            </div>
+        </div>
+
+        <!-- Окно результатов поиска -->
+        <div class="inner-window" id="innerWindow" style="display: none;">
             <span class="close-btn" onclick="closeInnerWindow()">✕</span>
+            <h6>Результаты поиска:</h6>
             <ul id="items-list"></ul>
         </div>
+
         <hr class="w-100 my-5">
 
+        <!-- Кнопки навигации по складам -->
+        <div class="container mt-4 text-center">
+            <h5>Ваши склады</h5>
+            <div id="storageButtons" class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                <!-- Кнопки складов будут добавлены динамически -->
+            </div>
+        </div>
     </div>
+
+    <!-- Контейнер для складов -->
     <div class="container border border-5 border-danger rounded-5">
-        <div id="storages" class="w-100"></div>
+        <div id="storagesContainer" class="w-100">
+            <!-- Склады будут добавлены динамически -->
+        </div>
     </div>
-    <script src="js/main.js"></script>
+
+    <!-- Подключение скриптов -->
     <script src="libs/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
