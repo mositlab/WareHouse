@@ -6,6 +6,17 @@
     <link href="libs/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
     <title>Система управления складами</title>
+    <script>
+        window.addEventListener("load", function () {
+            token123();
+            loadStorages();
+        });
+
+        function myFunction() {
+            console.log("Страница полностью загружена!");
+        }
+
+    </script>
 </head>
 <body>
     <!-- Навигационная панель -->
@@ -37,7 +48,7 @@
                         <input type="text" class="form-control" id="storageNameInput" placeholder="Например: Кладовка с болтами">
                     </div>
                 </div>
-                <div class="modal-footer">x
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
                     <button type="button" class="btn btn-success" onclick="addNewStorage()">Добавить склад</button>
                 </div>
@@ -86,6 +97,13 @@
     </div>
 
     <!-- Подключение скриптов -->
+    <script>
+        const numberInput = document.getElementById("storageNumberInput");
+        const nameInput = document.getElementById("storageNameInput");
+
+        const storageId = numberInput.value.trim();
+        const storageName = nameInput.value.trim();
+    </script>
     <script src="libs/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
 </body>

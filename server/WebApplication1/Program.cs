@@ -80,18 +80,16 @@ app.MapGet("/api/data/load", async (string? storageId) =>
 
     if (storageId != null)
     {
-        // Только предметы этого склада
         items = items?
-            .Where(i => i.ContainsKey("type") && i["type"] == "item" && i.ContainsKey("storageId") && i["storageId"] == storageId)
+            .Where(i => i.ContainsKey("storageId") && i["storageId"] == storageId)
             .ToList();
     }
     else
     {
-        // Все предметы
         items = items?.Where(i => i.ContainsKey("type") && i["type"] == "item").ToList();
     }
 
-    return Results.Json(items);
+    return Results.Json(items ?? new List<Dictionary<string, string>>());
 });
 
 // Загрузка всех складов из JSON
