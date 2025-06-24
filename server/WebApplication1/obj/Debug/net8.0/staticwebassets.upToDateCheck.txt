@@ -1,9 +1,11 @@
-wwwroot\css\styles.css
 wwwroot\data\items.json
+wwwroot\data\logs.json
 wwwroot\images\bolt.jpg
 wwwroot\index.html
 wwwroot\js\card.js
+wwwroot\js\main.js
 wwwroot\js\script.js
+wwwroot\js\storage1.js
 wwwroot\js\storage2.js
 wwwroot\libs\bootstrap.bundle.min.js
 wwwroot\libs\bootstrap.min.css
@@ -11,6 +13,3 @@ wwwroot\main.html
 wwwroot\nonindex.html
 wwwroot\storage1.html
 wwwroot\storage2.html
-wwwroot\data\logs.json
-wwwroot\js\main.js
-wwwroot\js\storage1.js
