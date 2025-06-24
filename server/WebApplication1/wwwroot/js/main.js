@@ -195,7 +195,8 @@ async function showStorage(storageId, storageName) {
                                             <input type="file" id="photoInput-${storageId}" class="form-control" accept="image/*">
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="border border-danger border-5" style="background-color: #222; width: 100%; height: auto; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
+                                            <div class="border border-danger border-5" style="background-color: #
+                                            ; width: 100%; height: auto; border-radius: 15px; aspect-ratio: 4/3; overflow: hidden;">
                                                 <img id="preview-${storageId}" src="#" style="display: none; width: 100%; height: 100%; object-fit: cover;">
                                             </div>
                                         </div>

@@ -1,5 +1,3 @@
-wwwroot\data\items.json
-wwwroot\data\logs.json
 wwwroot\images\bolt.jpg
 wwwroot\index.html
 wwwroot\js\card.js
