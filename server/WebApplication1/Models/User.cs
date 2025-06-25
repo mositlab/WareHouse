@@ -1,9 +1,6 @@
-namespace AuthPostgresDemo.Models
+public class User
 {
-    public class User
-    {
-        public int id { get; set; }
-        public string Email { get; set; } = string.Empty;
-        public string PasswordHash { get; set; } = string.Empty;
-    }
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public int PasswordHash { get; set; }
 }
