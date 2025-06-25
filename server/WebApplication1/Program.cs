@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Добавляем контекст БД
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -29,7 +30,6 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key)
@@ -52,6 +52,22 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.MapFallbackToFile("index.html");
+
+// Убедимся, что база данных создана
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    try
+    {
+        context.Database.EnsureCreated();
+        Console.WriteLine("База данных создана/подключена успешно");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Ошибка при создании базы данных: {ex.Message}");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {

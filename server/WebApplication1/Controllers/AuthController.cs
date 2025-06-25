@@ -4,7 +4,6 @@ using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 
@@ -26,58 +25,74 @@ namespace AuthPostgresDemo.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegisterRequest request)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
-                return BadRequest("Email и пароль обязательны");
-
-            if (_context.Users.Any(u => u.Email == request.Email))
-                return BadRequest("Пользователь уже существует");
-
-            var user = new User
+            try
             {
-                Email = request.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
-            };
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                    return BadRequest("Email и пароль обязательны");
 
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
+                if (_context.Users.Any(u => u.Email == request.Email))
+                    return BadRequest("Пользователь уже существует");
 
-            return Ok(new { message = "Пользователь зарегистрирован" });
+                var user = new User
+                {
+                    Email = request.Email,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
+                };
+
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Пользователь зарегистрирован" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка регистрации: {ex.Message}");
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
         }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginRequest request)
         {
-            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
-                return BadRequest("Email и пароль обязательны");
-
-            var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
-
-            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-                return Unauthorized("Неверный логин или пароль");
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]!);
-
-            var tokenDescriptor = new SecurityTokenDescriptor
+            try
             {
-                Subject = new ClaimsIdentity(new[]
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                    return BadRequest("Email и пароль обязательны");
+
+                var user = _context.Users.FirstOrDefault(u => u.Email == request.Email);
+                if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+                    return Unauthorized("Неверный логин или пароль");
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                // Исправлено: используем UTF8 вместо ASCII
+                var key = Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]!);
+
+                var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
-                    new Claim(ClaimTypes.Email, user.Email)
-                }),
-                Expires = DateTime.UtcNow.AddMinutes(
-                    Convert.ToDouble(_configuration["JwtSettings:TokenValidityInMinutes"])),
-                Issuer = _configuration["JwtSettings:Issuer"],
-                Audience = _configuration["JwtSettings:Audience"],
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha256Signature)
-            };
+                    Subject = new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
+                        new Claim(ClaimTypes.Email, user.Email)
+                    }),
+                    Expires = DateTime.UtcNow.AddMinutes(
+                        Convert.ToDouble(_configuration["JwtSettings:TokenValidityInMinutes"])),
+                    Issuer = _configuration["JwtSettings:Issuer"],
+                    Audience = _configuration["JwtSettings:Audience"],
+                    SigningCredentials = new SigningCredentials(
+                        new SymmetricSecurityKey(key),
+                        SecurityAlgorithms.HmacSha256Signature)
+                };
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new { access_token = tokenString });
+                return Ok(new { access_token = tokenString });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка входа: {ex.Message}");
+                return StatusCode(500, "Внутренняя ошибка сервера");
+            }
         }
     }
 

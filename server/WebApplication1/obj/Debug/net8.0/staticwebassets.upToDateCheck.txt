@@ -1,3 +1,4 @@
+wwwroot\css\styles.css
 wwwroot\images\bolt.jpg
 wwwroot\index.html
 wwwroot\js\card.js

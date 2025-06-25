@@ -1,0 +1,2 @@
+C:\Users\praktikant3\Desktop\Новая папка\WareHouse\server\WebApplication1\wwwroot\data\items.json
+C:\Users\praktikant3\Desktop\Новая папка\WareHouse\server\WebApplication1\wwwroot\data\logs.json
