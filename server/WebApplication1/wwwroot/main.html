@@ -7,10 +7,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <title>Система управления складами</title>
     <script>
-        window.addEventListener("load", function () {
-            token123();
-            loadStorages();
-        });
+      
 
         function myFunction() {
             console.log("Страница полностью загружена!");
@@ -31,6 +28,7 @@
     </nav>
 
     <!-- Модальное окно конструктора складов -->
+     <form id="ConstructorStorageForm">
     <div class="modal fade" id="Constructor" tabindex="-1" aria-labelledby="constructorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -50,11 +48,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-success" onclick="addNewStorage()">Добавить склад</button>
+                    <button type="submit" class="btn btn-success">Добавить склад</button>
                 </div>
             </div>
         </div>
     </div>
+</form>
 
     <!-- Основное содержимое -->
     <div class="main-1">
@@ -103,6 +102,7 @@
 
         const storageId = numberInput.value.trim();
         const storageName = nameInput.value.trim();
+
     </script>
     <script src="libs/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>

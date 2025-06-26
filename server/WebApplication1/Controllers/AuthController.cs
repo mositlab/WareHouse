@@ -2,6 +2,7 @@ using AuthPostgresDemo.Data;
 using AuthPostgresDemo.Models;
 using BCrypt.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -95,6 +96,31 @@ namespace AuthPostgresDemo.Controllers
             }
         }
     }
+    //  онтроллер дл€ обработки запросов в таблицу Storage
+    [ApiController]
+    [Route("api/[controller]")]
+    public class StorageControllers: ControllerBase
+    {
+        private readonly AppDbContext _context;
+        public StorageControllers(AppDbContext context)
+        {
+            _context = context;
+        }
+        [HttpGet()]
+        public async Task<ActionResult<IEnumerable<storage1>>> GetStorage1()
+        {
+            return await _context.storage1.ToListAsync();
+        }
+        [HttpPost]
+        public async Task<ActionResult<storage1>> CreateStorage1(storage1 storage1)
+        {
+            _context.storage1.Add(storage1);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetStorage1), new { id = storage1.id }, storage1);
+        }
+    }
+
+
 
     public class UserLoginRequest
     {

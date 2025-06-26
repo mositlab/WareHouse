@@ -10,12 +10,13 @@ namespace AuthPostgresDemo.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<storage1> storage1 { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("users");
 
-            // Добавляем уникальный индекс на email
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();

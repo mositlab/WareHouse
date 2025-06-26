@@ -1,5 +1,51 @@
 [
   {
+    "ContainingType": "AuthPostgresDemo.Controllers.StorageControllers",
+    "Method": "GetStorage1",
+    "RelativePath": "api/StorageControllers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[AuthPostgresDemo.Models.storage1, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AuthPostgresDemo.Controllers.StorageControllers",
+    "Method": "CreateStorage1",
+    "RelativePath": "api/StorageControllers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "storage1",
+        "Type": "AuthPostgresDemo.Models.storage1",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AuthPostgresDemo.Models.storage1",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "AuthPostgresDemo.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "Auth/login",
